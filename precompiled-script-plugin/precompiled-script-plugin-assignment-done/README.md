@@ -17,11 +17,11 @@ have to add [groovy-gradle-plugin](https://plugins.gradle.org/plugin/dev.gradlep
 
 Script for the precompiled script plugin is located under `buildScr/main/groovy` or `buildSrc/main/kotlin` package.
 The name of the plugin by which you will be able to reference it will be the same as the filename of the script itself
-without the extension. In case that the filename is **com.rivancic.files-plugin.gradle** Then the
+without the extension. In case that the filename is **com.tarasovvp.files-plugin.gradle** Then the
 plugin id will be filename without the extension **.gradle**.
 
-- Filename: com.rivancic.files-plugin.gradle
-- Plugin id: com.rivancic.files-plugin
+- Filename: com.tarasovv.files-plugin.gradle
+- Plugin id: com.tarasovv.files-plugin
 
 <p width="100%">
   <img src="readme-content/gradle-precompiled-script-plugin.png" alt="Gradle precompiled script plugin" width="400">

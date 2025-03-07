@@ -25,4 +25,5 @@ include(":task:file-tasks-assignment")
 include(":task:file-tasks-assignment-done")
 include(":script-plugin:local-script-plugin-example")
 include(":script-plugin:remote-script-plugin-example")
+include(":precompiled-script-plugin:precompiled-script-plugin-assignment-done")
  
