@@ -1,0 +1,35 @@
+import java.nio.file.Files
+import java.nio.file.attribute.FileTime
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+
+tasks.register("sortFiles") {
+    setGroup("Files")
+    setDescription("Sorts files in given directory into build.files subdirectories based on the sorting type [creationDate,extension]")
+    doLast {
+        def properties = project.ext.getProperties()
+        def folderName = properties.get("tasks.files.folder")
+        def folder
+        def sortType = properties.get("tasks.files.sortType") ?: "creationDate"
+        fileTree(folderName).files.each {
+            if (sortType == "creationDate") {
+                FileTime creationTime = Files.getAttribute(it.toPath(), "creationTime")
+                def time = LocalDateTime.ofInstant(creationTime.toInstant(), ZoneId.systemDefault())
+                folder = mkdir(file(buildDir.toPath().resolve(time.format(DateTimeFormatter.ofPattern("MM-yy")))))
+            } else {
+                def ext = it.name.substring(it.name.lastIndexOf(".") + 1)
+                folder = mkdir(file(buildDir.toPath().resolve(ext)))
+            }
+            ant.move(file: it, todir: folder)
+        }
+    }
+}
+
+tasks.register("clean", Delete) {
+    setGroup("Files")
+    setDescription("Clean build directory")
+    doLast {
+        project.delete(buildDir)
+    }
+}

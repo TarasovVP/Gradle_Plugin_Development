@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Gradle Plugin Development"
 include(":app")
+include(":task:file-tasks-assignment")
+include(":task:file-tasks-assignment-done")
  
